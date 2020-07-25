@@ -1,0 +1,79 @@
+﻿<Window x:Name="window" x:Class="Correction.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Correction.Forms"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="450">
+    <Grid x:Name="Size">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="128*"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="pic" Width="{Binding ElementName=Slide, Path=Value}"></Image>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="3"></GridSplitter>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="1" Content="До калибровки" Style="{StaticResource ButS}" Name="ButBefore" Click="ButBefore_Click"></Button>
+            <Button Grid.Row="1" Grid.Column="1" Content="После калибровки" Name="ButAfter" Style="{StaticResource ButS}" Click="ButAfter_Click"></Button>
+
+            <GroupBox Header="Сенсор" Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Добавить Сенсор" Grid.Row="0" Style="{StaticResource ButS}" Name="AddSens" Click="AddSens_Click" ></Button>
+                    <Button Content="Редактировать Сенсор" Grid.Row="1" Style="{StaticResource ButS}" Name="ChangeSens" Click="ChangeSens_Click" ></Button>
+                    <ComboBox Name="Sensors" Grid.Column="1" Grid.Row="0" Style="{StaticResource ComboBoxS}" SelectionChanged="Sensors_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=NameSensor}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Кадр" Grid.Row="3" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Добавить Кадр" Grid.Row="0" Style="{StaticResource ButS}" Name="AddFrame" Click="AddFrame_Click" ></Button>
+                    <Button Content="Редактировать Кадр" Grid.Row="1" Style="{StaticResource ButS}" Name="ChangeFrame" Click="ChangeFrame_Click"></Button>
+                    <ComboBox Name="Frames" Grid.Column="1" Grid.Row="0" Style="{StaticResource ComboBoxS}" SelectionChanged="Frames_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NameFile}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+            </GroupBox>
+
+            <Slider Grid.ColumnSpan="2" Name="Slide" Minimum="30" Maximum="800"/>
+        </Grid>
+    </Grid>
+</Window>
